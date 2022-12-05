@@ -9,16 +9,16 @@ import java.security.MessageDigest
 fun readInput(name: String) = File("src/main/resources", "$name.txt")
     .readLines()
 
-fun Any.inputFromResources(name: String) = this::class.java
-    .getResource("$name.txt")
+fun Any.inputFromResources(dayName: String, partName: String) = this::class.java
+    .getResource("$dayName/$partName.txt")
     ?.file
     ?.let { File(it) }
     ?.readLines()
-    ?: throw RuntimeException("File not found: $name")
+    ?: throw RuntimeException("File not found: $dayName/$partName.txt")
 
-fun Any.inputLines(name: String) = inputFromResources(name)
+fun Any.inputLines(dayName: String, partName: String) = inputFromResources(dayName, partName)
 
-fun Any.inputAsInt(name: String) = inputFromResources(name)
+fun Any.inputAsInt(dayName: String, partName: String) = inputFromResources(dayName, partName)
     .map { it.toInt() }
 
 /**
